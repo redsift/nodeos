@@ -2,11 +2,18 @@ FROM quay.io/redsift/baseos
 MAINTAINER Rahul Powar email: rahul@redsift.io version: 1.0.102
 
 RUN export DEBIAN_FRONTEND=noninteractive && \
-	apt-get update && \
-	apt-get install -y curl && \
-	curl -sL https://deb.nodesource.com/setup_0.12 | bash - && \
-	apt-get update && apt-get install -y openssl ca-certificates git nodejs && \
-	apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \	
+    apt-get update && \
+    apt-get install -y openssl ca-certificates curl rsync gettext-base \
+    	dnsutils build-essential libtool autoconf git mercurial vim emacs tcpdump dialog man \
+    	manpages libpython-stdlib libpython2.7-minimal libpython2.7-stdlib mime-support python python-minimal python2.7 python2.7-minimal python-pip && \
+    apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+	
+# Install NodeJS
+RUN curl -sL https://deb.nodesource.com/setup_0.12 | bash - && \
+	export DEBIAN_FRONTEND=noninteractive && \
+    apt-get update && \
+	apt-get install -y nodejs && \
+	apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
 	npm install -g bunyan --quiet
 
 # Version dump
