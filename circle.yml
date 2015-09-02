@@ -1,7 +1,7 @@
 machine: 
   environment: 
     CONTAINER_NAME: quay.io/redsift/nodeos
-    CIRCLE_REVERSE_DEPENDENCIES: oauther sifter
+    CIRCLE_REVERSE_DEPENDENCIES: redsift-node
   services: 
     - docker
 
