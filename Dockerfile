@@ -3,7 +3,7 @@ MAINTAINER Rahul Powar email: rahul@redsift.io version: 1.0.102
 
 RUN export DEBIAN_FRONTEND=noninteractive && \
     apt-get update && \
-    apt-get install -y curl && \
+    apt-get install -y curl \
   		libkrb5-dev \
     	libpython-stdlib libpython2.7-minimal libpython2.7-stdlib mime-support python python-minimal python2.7 python2.7-minimal python-pip && \
     apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
