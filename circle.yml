@@ -24,7 +24,8 @@ dependencies:
 
 test: 
   override:
-    - echo "NodeJS" `nodejs -v` && echo "NPM" `npm -v` | docker run -i --entrypoint /bin/bash $CONTAINER_NAME
+    - echo "nodejs -v" | docker run -i --entrypoint /bin/bash $CONTAINER_NAME
+    - echo "npm -v" | docker run -i --entrypoint /bin/bash $CONTAINER_NAME
 
 deployment: 
   prod: 
