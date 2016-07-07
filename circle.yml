@@ -1,17 +1,17 @@
-machine: 
-  environment: 
+machine:
+  environment:
     CONTAINER_NAME: quay.io/redsift/nodeos
-    CIRCLE_REVERSE_DEPENDENCIES: redsift-node
-  services: 
+    CIRCLE_REVERSE_DEPENDENCIES: redsift-node oauthd-service
+  services:
     - docker
 
 general:
   branches:
     only:
       - master
-      
-dependencies: 
-  override: 
+
+dependencies:
+  override:
     - "docker info"
     - "docker login -e $QUAY_EMAIL -u $QUAY_USER -p $QUAY_PASS quay.io"
     - |
@@ -22,14 +22,14 @@ dependencies:
         echo "Tagging as $CONTAINER_NAME:${CIRCLE_BRANCH}"
         docker tag -f $CONTAINER_NAME:latest $CONTAINER_NAME:${CIRCLE_BRANCH}
 
-test: 
+test:
   override:
     - echo "nodejs -v" | docker run -i --entrypoint /bin/bash $CONTAINER_NAME
     - echo "npm -v" | docker run -i --entrypoint /bin/bash $CONTAINER_NAME
 
-deployment: 
-  prod: 
+deployment:
+  prod:
     branch: master
-    commands: 
+    commands:
       - "docker push $CONTAINER_NAME"
       - "./circle_ci_trigger_build"
