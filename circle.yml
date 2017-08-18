@@ -1,7 +1,7 @@
 machine:
   environment:
     CONTAINER_NAME: quay.io/redsift/nodeos
-    CIRCLE_REVERSE_DEPENDENCIES: redsift-node oauthd-service
+    CIRCLE_REVERSE_DEPENDENCIES: cipher spm oauthd-service
   services:
     - docker
 
