@@ -31,6 +31,11 @@ jobs:
               --build-arg COMMIT_SHA1=${COMMIT_SHA1} \
               --build-arg VERSION=${VERSION} .
       - run:
+          name: Test container
+          command: |
+            echo "node -v" | docker run -i --entrypoint /bin/bash ${CONTAINER_NAME}
+            echo "npm -v" | docker run -i --entrypoint /bin/bash ${CONTAINER_NAME}
+      - run:
           name: Push Docker images to a registry
           command: |
             test -z $BASH && source ${BASH_ENV}
