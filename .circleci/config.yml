@@ -33,6 +33,7 @@ jobs:
       - run:
           name: Test container
           command: |
+            test -z $BASH && source ${BASH_ENV}
             echo "node -v" | docker run -i --entrypoint /bin/bash ${CONTAINER_NAME}
             echo "npm -v" | docker run -i --entrypoint /bin/bash ${CONTAINER_NAME}
       - run:
