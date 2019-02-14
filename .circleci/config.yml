@@ -1,0 +1,48 @@
+defaults:
+  steps:
+    - set_environment: &set_environment
+        name: Set environment variables
+        command: |
+          echo "export CONTAINER_NAME=\"quay.io/redsift/nodeos\"" >> $BASH_ENV
+          echo "export BUILD_DATE=$(date -u +"%Y-%m-%dT%H:%M:%SZ")" >> $BASH_ENV
+          echo "export COMMIT_SHA1=\"${CIRCLE_SHA1:0:7}\"" >> $BASH_ENV
+          echo "export VERSION=\"${CIRCLE_TAG:=$CIRCLE_BRANCH}-${CIRCLE_SHA1:0:7}\"" >> $BASH_ENV
+    - log_in_to_quay: &log_in_to_quay
+        name: Log in to quay.io
+        command: |
+          echo $QUAY_PASS | docker login --username $QUAY_USER --password-stdin quay.io
+version: 2
+
+jobs:
+  container:
+    docker:
+      - image: docker:18.09.0  
+    steps: 
+      - checkout
+      - setup_remote_docker
+      - run: *set_environment
+      - run: *log_in_to_quay
+      - run:
+          name: Build container
+          command: |
+            test -z $BASH && source ${BASH_ENV}
+            docker build -t ${CONTAINER_NAME} -f Dockerfile \
+              --build-arg BUILD_DATE=${BUILD_DATE} \
+              --build-arg COMMIT_SHA1=${COMMIT_SHA1} \
+              --build-arg VERSION=${VERSION} .
+      - run:
+          name: Push Docker images to a registry
+          command: |
+            test -z $BASH && source ${BASH_ENV}
+            docker tag ${CONTAINER_NAME}:latest ${CONTAINER_NAME}:${COMMIT_SHA1}
+            docker push ${CONTAINER_NAME}:${COMMIT_SHA1} > /dev/null
+            docker push ${CONTAINER_NAME}:latest > /dev/null
+workflows:
+  version: 2
+  build:
+    jobs:
+      - container:
+          filters:
+            branches:
+              only: master
+          context: org-global
