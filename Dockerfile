@@ -22,6 +22,8 @@ RUN curl https://raw.githubusercontent.com/creationix/nvm/v$NVM_VERSION/install.
 ENV NODE_PATH $NVM_DIR/versions/node/v$NODE_VERSION/lib/node_modules
 ENV PATH      $NVM_DIR/versions/node/v$NODE_VERSION/bin:$PATH
 
+RUN npm i -g npm@6.7.0
+
 # Version dump
 RUN \
 	echo "NodeJS" `node -v` && \
