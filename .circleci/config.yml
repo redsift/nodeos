@@ -41,8 +41,8 @@ jobs:
           name: Test container
           command: |
             test -z $BASH && source ${BASH_ENV}
-            echo "node -v" | docker run -i --entrypoint /bin/bash ${CONTAINER_NAME}
-            echo "npm -v" | docker run -i --entrypoint /bin/bash ${CONTAINER_NAME}
+            echo "node -v" | docker run -i --entrypoint /bin/bash ${CONTAINER_NAME}:${COMMIT_SHA1}
+            echo "npm -v" | docker run -i --entrypoint /bin/bash ${CONTAINER_NAME}:${COMMIT_SHA1}
       - run:
           name: Push Docker images to a registry
           command: |
