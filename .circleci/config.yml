@@ -33,10 +33,10 @@ jobs:
               suffix="latest"
             fi
             sed "s/FROM quay\.io\/redsift\/baseos/&:${suffix}/" < Dockerfile > Dockerfile.versioned
-            docker build -t ${CONTAINER_NAME}:${COMMIT_SHA1} -f Dockerfile \
+            docker build -t ${CONTAINER_NAME}:${COMMIT_SHA1} -f Dockerfile.versioned \
               --build-arg BUILD_DATE=${BUILD_DATE} \
               --build-arg COMMIT_SHA1=${COMMIT_SHA1} \
-              --build-arg VERSION=${VERSION} Dockerfile.versioned
+              --build-arg VERSION=${VERSION} .
       - run:
           name: Test container
           command: |
