@@ -49,11 +49,12 @@ jobs:
             test -z $BASH && source ${BASH_ENV}
             imageName=${CONTAINER_NAME}:${COMMIT_SHA1}
             suffix="beta"
-            echo "Tagging as $CONTAINER_NAME:${suffix}"
             if [[ "$BRANCH" == "release" ]]; then
-              docker tag $imageName $CONTAINER_NAME:${suffix}
+              suffix="latest"
             fi
-            docker push ${CONTAINER_NAME} > /dev/null
+            echo "Tagging as $CONTAINER_NAME:${suffix}"
+            docker tag $imageName $CONTAINER_NAME:${suffix}
+            # docker push ${CONTAINER_NAME} > /dev/null
 
 workflows:
   version: 2
