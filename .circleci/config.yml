@@ -53,7 +53,7 @@ jobs:
             if [[ "$BRANCH" == "release" ]]; then
               docker tag $imageName $CONTAINER_NAME:${suffix}
             fi
-            docker push ${CONTAINER_NAME} > /dev/null
+            # docker push ${CONTAINER_NAME} > /dev/null
 
 workflows:
   version: 2
