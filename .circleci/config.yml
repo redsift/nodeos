@@ -54,7 +54,7 @@ jobs:
             fi
             echo "Tagging as $CONTAINER_NAME:${suffix}"
             docker tag $imageName $CONTAINER_NAME:${suffix}
-            # docker push ${CONTAINER_NAME} > /dev/null
+            docker push ${CONTAINER_NAME} > /dev/null
 
 workflows:
   version: 2
@@ -63,5 +63,5 @@ workflows:
       - container:
           filters:
             branches:
-              only: master
+              only: [master, release-1]
           context: org-global
