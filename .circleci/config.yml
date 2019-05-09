@@ -32,7 +32,7 @@ jobs:
             if [[ "$BRANCH" == "release" ]]; then
               suffix="latest"
             fi
-            echo "BRANCH:${BRANCH}"
+
             sed "s/FROM quay\.io\/redsift\/baseos/&:${suffix}/" < Dockerfile > Dockerfile.versioned
             docker build -t ${CONTAINER_NAME}:${COMMIT_SHA1} -f Dockerfile.versioned \
               --build-arg BUILD_DATE=${BUILD_DATE} \
