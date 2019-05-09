@@ -63,5 +63,5 @@ workflows:
       - container:
           filters:
             branches:
-              only: master
+              only: [master, release-1]
           context: org-global
