@@ -17,7 +17,7 @@ version: 2
 jobs:
   container:
     docker:
-      - image: docker:18.09.0
+      - image: cibuilds/docker:18.09.6
     steps: 
       - checkout
       - setup_remote_docker
