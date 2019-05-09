@@ -7,7 +7,7 @@ defaults:
           echo "export BUILD_DATE=$(date -u +"%Y-%m-%dT%H:%M:%SZ")" >> $BASH_ENV
           echo "export COMMIT_SHA1=\"${CIRCLE_SHA1:0:7}\"" >> $BASH_ENV
           echo "export VERSION=\"${CIRCLE_TAG:=$CIRCLE_BRANCH}-${CIRCLE_SHA1:0:7}\"" >> $BASH_ENV
-          echo "export BRANCH=(${CIRCLE_BRANCH/-/ })" >> $BASH_ENV
+          echo "export BRANCH=\"(${CIRCLE_BRANCH/-/ })\"" >> $BASH_ENV
     - log_in_to_quay: &log_in_to_quay
         name: Log in to quay.io
         command: |
