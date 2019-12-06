@@ -7,9 +7,9 @@ RUN export DEBIAN_FRONTEND=noninteractive && \
         libpython-stdlib libpython2.7-minimal libpython2.7-stdlib mime-support python python-minimal python2.7 python2.7-minimal python-pip git && \
     apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-ENV NVM_VERSION 0.33.8
+ENV NVM_VERSION 0.35.1
 ENV NVM_DIR /usr/local/nvm
-ENV NODE_VERSION 8.10.0
+ENV NODE_VERSION 12.13.1
 
 # Install nvm with node and npm
 RUN curl https://raw.githubusercontent.com/creationix/nvm/v$NVM_VERSION/install.sh | bash \
@@ -17,7 +17,7 @@ RUN curl https://raw.githubusercontent.com/creationix/nvm/v$NVM_VERSION/install.
     && nvm install $NODE_VERSION \
     && nvm alias default $NODE_VERSION \
     && nvm use default \
-    && npm i -g npm@6.7.0 \
+    && npm i -g npm@6.13.2 \
     && npm_config_user=root npm install -g bunyan --quiet
 
 ENV NODE_PATH $NVM_DIR/versions/node/v$NODE_VERSION/lib/node_modules
