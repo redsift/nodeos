@@ -8,7 +8,7 @@ RUN export DEBIAN_FRONTEND=noninteractive && \
     apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 ENV NVM_VERSION 0.35.1
-ENV NVM_DIR /usr/local/nvm
+ENV NVM_DIR ${HOME}/.nvm
 ENV NODE_VERSION 12.13.1
 
 # Install nvm with node and npm
