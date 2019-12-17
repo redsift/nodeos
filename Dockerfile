@@ -1,9 +1,9 @@
 FROM quay.io/redsift/baseos
-MAINTAINER Rahul Powar email: rahul@redsift.io version: 1.0.102
+MAINTAINER Rahul Powar email: rahul@redsift.io version: 1.1.0
 
 RUN export DEBIAN_FRONTEND=noninteractive && \
     apt-get update && \
-    apt-get install -y curl \
+    apt-get install -y curl openssl libssl-dev \
         libpython-stdlib libpython2.7-minimal libpython2.7-stdlib mime-support python python-minimal python2.7 python2.7-minimal python-pip git && \
     apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
@@ -11,6 +11,7 @@ ENV NVM_VERSION 0.35.1
 ENV NVM_DIR ${HOME}/.nvm
 ENV NODE_VERSION 12.13.1
 ENV NPM_VERSION 6.13.2
+ENV CAPNPROTO_VERSION 0.7.0
 
 # Install nvm with node and npm
 RUN curl https://raw.githubusercontent.com/creationix/nvm/v$NVM_VERSION/install.sh | bash \
@@ -27,6 +28,14 @@ ENV PATH      $NVM_DIR/versions/node/v$NODE_VERSION/bin:$PATH
 # Version dump
 RUN echo "NodeJS" `node -v` && \
     echo "NPM" `npm -v`
+
+# Install Capn Proto
+RUN cd /tmp && curl -O https://capnproto.org/capnproto-c++-${CAPNPROTO_VERSION}.tar.gz \
+    && tar zxf capnproto-c++-${CAPNPROTO_VERSION}.tar.gz \
+    && cd capnproto-c++-${CAPNPROTO_VERSION} \
+    && ./configure \
+    && make -j6 check \
+    && make install
 
 # Define working directory.
 WORKDIR /
