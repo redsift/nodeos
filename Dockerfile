@@ -10,6 +10,7 @@ RUN export DEBIAN_FRONTEND=noninteractive && \
 ENV NVM_VERSION 0.35.1
 ENV NVM_DIR ${HOME}/.nvm
 ENV NODE_VERSION 12.13.1
+ENV NPM_VERSION 6.13.2
 
 # Install nvm with node and npm
 RUN curl https://raw.githubusercontent.com/creationix/nvm/v$NVM_VERSION/install.sh | bash \
@@ -17,7 +18,7 @@ RUN curl https://raw.githubusercontent.com/creationix/nvm/v$NVM_VERSION/install.
     && nvm install $NODE_VERSION \
     && nvm alias default $NODE_VERSION \
     && nvm use default \
-    && npm i -g npm@6.13.2 \
+    && npm i -g npm@$NPM_VERSION \
     && npm_config_user=root npm install -g bunyan --quiet
 
 ENV NODE_PATH $NVM_DIR/versions/node/v$NODE_VERSION/lib/node_modules
