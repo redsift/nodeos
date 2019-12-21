@@ -7,10 +7,10 @@ RUN export DEBIAN_FRONTEND=noninteractive && \
         libpython-stdlib libpython2.7-minimal libpython2.7-stdlib mime-support python python-minimal python2.7 python2.7-minimal python-pip git && \
     apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-ENV NVM_VERSION 0.35.1
+ENV NVM_VERSION 0.35.2
 ENV NVM_DIR ${HOME}/.nvm
-ENV NODE_VERSION 12.13.1
-ENV NPM_VERSION 6.13.2
+ENV NODE_VERSION 12.14.0
+ENV NPM_VERSION 6.13.4
 
 # Install nvm with node and npm
 RUN curl https://raw.githubusercontent.com/creationix/nvm/v$NVM_VERSION/install.sh | bash \
