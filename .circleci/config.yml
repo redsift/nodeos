@@ -3,7 +3,7 @@ defaults:
     - set_environment: &set_environment
         name: Set environment variables
         command: |-
-          cat >> $BASH_ENV << EOF
+          cat \>> $BASH_ENV \<< EOF
           set -a
           CONTAINER_NAME=\"quay.io/redsift/nodeos\"
           BUILD_DATE=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
