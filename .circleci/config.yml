@@ -62,7 +62,7 @@ jobs:
               docker tag $imageName $CONTAINER_NAME:latest
             fi
             echo "Tagging as $CONTAINER_NAME:${NODE_VERSION}${suffix}"
-            docker tag $imageName "${CONTAINER_NAME}:${NODE_VERSION}${suffix}""
+            docker tag $imageName "${CONTAINER_NAME}:${NODE_VERSION}${suffix}"
             docker push ${CONTAINER_NAME} > /dev/null
 
 workflows:
