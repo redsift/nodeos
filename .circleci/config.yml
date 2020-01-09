@@ -5,10 +5,10 @@ defaults:
         command: |-
           cat \>> $BASH_ENV \<< EOF
           set -a
-          CONTAINER_NAME=\"quay.io/redsift/nodeos\"
+          CONTAINER_NAME="quay.io/redsift/nodeos"
           BUILD_DATE=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
-          COMMIT_SHA1=\"${CIRCLE_SHA1:0:7}\"
-          VERSION=\"${CIRCLE_TAG:=$CIRCLE_BRANCH}-${CIRCLE_SHA1:0:7}\"
+          COMMIT_SHA1="${CIRCLE_SHA1:0:7}"
+          VERSION="${CIRCLE_TAG:=$CIRCLE_BRANCH}-${CIRCLE_SHA1:0:7}"
           BRANCH=(${CIRCLE_BRANCH/-/ })
           NODE_VERSION="12.14.0"
           set +a
