@@ -1,5 +1,8 @@
 FROM quay.io/redsift/baseos
-MAINTAINER Rahul Powar email: rahul@redsift.io version: 1.0.102
+LABEL author.name="Karl Norling" \
+  author.email="karl@redsift.io" \
+  version="1.1.103" \
+  organization="Red Sift"
 
 RUN export DEBIAN_FRONTEND=noninteractive && \
     apt-get update && \
@@ -13,6 +16,9 @@ ENV NVM_VERSION 0.35.2
 ENV NVM_DIR ${HOME}/.nvm
 ENV NODE_VERSION "${nv}"
 ENV NPM_VERSION 6.13.4
+
+# node has dropped http header size from 80K to 8K
+ENV NODE_OPTIONS='--max-http-header-size=81000'
 
 # Install nvm with node and npm
 RUN curl https://raw.githubusercontent.com/creationix/nvm/v$NVM_VERSION/install.sh | bash \
