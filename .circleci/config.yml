@@ -5,6 +5,7 @@ defaults:
         command: |-
           cat \>> $BASH_ENV \<< EOF
           set -a
+          CIRCLE_REVERSE_DEPENDENCIES: meteoros
           CONTAINER_NAME="quay.io/redsift/nodeos"
           BUILD_DATE=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
           COMMIT_SHA1="${CIRCLE_SHA1:0:7}"
@@ -66,6 +67,7 @@ jobs:
             echo "Tagging as $CONTAINER_NAME:${betasuffix}"
             docker tag $imageName $CONTAINER_NAME:${betasuffix}
             docker push ${CONTAINER_NAME} > /dev/null
+      - run: ./circle_ci_trigger_build
 
 workflows:
   version: 2.1
