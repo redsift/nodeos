@@ -5,7 +5,6 @@ defaults:
         command: |-
           cat \>> $BASH_ENV \<< EOF
           set -a
-          CIRCLE_REVERSE_DEPENDENCIES: meteoros
           CONTAINER_NAME="quay.io/redsift/nodeos"
           BUILD_DATE=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
           COMMIT_SHA1="${CIRCLE_SHA1:0:7}"
@@ -22,6 +21,8 @@ version: 2.1
 
 jobs:
   container:
+    environment:
+      CIRCLE_REVERSE_DEPENDENCIES: meteoros
     docker:
       - image: cibuilds/docker:18.09.6
     steps: 
