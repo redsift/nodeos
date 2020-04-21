@@ -10,7 +10,7 @@ defaults:
           COMMIT_SHA1="${CIRCLE_SHA1:0:7}"
           VERSION="${CIRCLE_TAG:=$CIRCLE_BRANCH}-${CIRCLE_SHA1:0:7}"
           BRANCH=(${CIRCLE_BRANCH/-/ })
-          NODE_VERSION="12.16.1"
+          NODE_VERSION="12.16.2"
           set +a
           EOF
     - log_in_to_quay: &log_in_to_quay
