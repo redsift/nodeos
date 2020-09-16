@@ -10,7 +10,7 @@ defaults:
           COMMIT_SHA1="${CIRCLE_SHA1:0:7}"
           VERSION="${CIRCLE_TAG:=$CIRCLE_BRANCH}-${CIRCLE_SHA1:0:7}"
           BRANCH=(${CIRCLE_BRANCH/-/ })
-          NODE_VERSION="12.18.0"
+          NODE_VERSION="12.18.4"
           set +a
           EOF
     - log_in_to_quay: &log_in_to_quay
@@ -25,7 +25,7 @@ jobs:
       CIRCLE_REVERSE_DEPENDENCIES: meteoros spm cipher oauthd-service
     docker:
       - image: cibuilds/docker:18.09.6
-    steps: 
+    steps:
       - checkout
       - setup_remote_docker
       - run: *set_environment
