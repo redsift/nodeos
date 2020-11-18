@@ -10,12 +10,12 @@ RUN export DEBIAN_FRONTEND=noninteractive && \
   libpython-stdlib libpython2.7-minimal libpython2.7-stdlib mime-support python python-minimal python2.7 python2.7-minimal python-pip git && \
   apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-ARG nv="12.18.4"
+ARG nv="14.15.1"
 
 ENV NVM_VERSION 0.35.3
 ENV NVM_DIR ${HOME}/.nvm
 ENV NODE_VERSION "${nv}"
-ENV NPM_VERSION 6.14.6
+ENV NPM_VERSION 6.14.8
 
 # node has dropped http header size from 80K to 8K
 ENV NODE_OPTIONS='--max-http-header-size=81000 --trace-warnings'
