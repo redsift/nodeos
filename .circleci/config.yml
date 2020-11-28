@@ -22,7 +22,7 @@ version: 2.1
 jobs:
   container:
     environment:
-      CIRCLE_REVERSE_DEPENDENCIES: meteoros spm cipher oauthd-service
+      CIRCLE_REVERSE_DEPENDENCIES: buildos-meteor spm cipher oauthd-service
     docker:
       - image: cibuilds/docker:18.09.6
     steps:
