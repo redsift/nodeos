@@ -15,7 +15,7 @@ ARG nv="12.21.0"
 ENV NVM_VERSION 0.37.2
 ENV NVM_DIR ${HOME}/.nvm
 ENV NODE_VERSION "${nv}"
-ENV NPM_VERSION 7.5.6
+ENV NPM_VERSION 6.14.11
 
 # node has dropped http header size from 80K to 8K
 ENV NODE_OPTIONS='--max-http-header-size=81000 --trace-warnings'
