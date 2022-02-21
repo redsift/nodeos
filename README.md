@@ -1,2 +1,2 @@
 # nodeos
-Node JS Docker Image. Current version v12.22.8
+Node JS Docker Image. Current version v16.14.0

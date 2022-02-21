@@ -10,7 +10,7 @@ RUN export DEBIAN_FRONTEND=noninteractive && \
   libpython-stdlib libpython2.7-minimal libpython2.7-stdlib mime-support python python-minimal python2.7 python2.7-minimal python-pip git && \
   apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-ARG nv="12.22.8"
+ARG nv="16.14.0"
 
 ENV NVM_VERSION 0.37.2
 ENV NVM_DIR ${HOME}/.nvm
