@@ -6,8 +6,7 @@ LABEL author.name="Randal Pinto" \
 
 RUN export DEBIAN_FRONTEND=noninteractive && \
   apt-get update && \
-  apt-get install -y curl \
-  libpython-stdlib libpython2.7-minimal libpython2.7-stdlib mime-support python python-minimal python2.7 python2.7-minimal python-pip git && \
+  apt-get install -y curl git ca-certificates && \
   apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 ARG nv="22.11.0"
