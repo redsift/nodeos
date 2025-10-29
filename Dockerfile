@@ -6,7 +6,8 @@ LABEL author.name="Randal Pinto" \
 
 RUN export DEBIAN_FRONTEND=noninteractive && \
   apt-get update && \
-  apt-get install -y curl git ca-certificates && \
+  apt-get install -y curl git ca-certificates \
+  python3 python3-pip python3-setuptools python-is-python3 build-essential && \
   apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 ARG nv="22.11.0"
