@@ -1,4 +1,4 @@
-FROM quay.io/redsift/baseos
+FROM quay.io/redsift/baseos:24.04
 LABEL author.name="Randal Pinto" \
   author.email="randal@redsift.io" \
   version="1.2.0" \
