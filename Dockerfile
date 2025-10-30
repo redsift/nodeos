@@ -10,7 +10,7 @@ RUN export DEBIAN_FRONTEND=noninteractive && \
   python3 python3-pip python3-setuptools python-is-python3 build-essential && \
   apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-ARG nv="20.18.0"
+ARG nv="22.11.0"
 
 ENV NVM_VERSION 0.40.1
 ENV NVM_DIR ${HOME}/.nvm
